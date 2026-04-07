@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyShop-Online Shopping</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Navbar -->
+<header class="sticky top-0 z-50 bg-[#073a7a] text-white shadow-md">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+
+    <!-- LEFT -->
+    <div class="flex flex-col">
+      <h1 class="text-lg font-semibold">
+        Hi, <span id="username">{User}</span>
+      </h1>
+      <p id="dateTime" class="text-xs text-gray-300"></p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="flex items-center gap-4">
+
+      <!-- Cart -->
+      <button id="cartBtn"
+        class="bg-white text-[#073a7a] px-4 py-2 rounded-full font-medium hover:bg-gray-200 flex items-center gap-2">
+        🛒 <span id="cartCount">0</span>
+      </button>
+
+      <!-- User -->
+      <div class="relative">
+        <button id="userBtn"
+          class="bg-white text-[#073a7a] px-4 py-2 rounded-full font-medium hover:bg-gray-200">
+          👤
+        </button>
+
+        <!-- Dropdown -->
+        <div id="dropdownMenu"
+          class="hidden absolute right-0 mt-2 w-48 bg-white text-gray-700 rounded-xl shadow-lg overflow-hidden">
+
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Profile</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100">Cart</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100">Address</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+          <a href="#" class="block px-4 py-2 hover:bg-gray-100">Help</a>
+
+          <button id="logoutBtn"
+            class="w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100">
+            Logout
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- Home -->
+
+<section class="text-center py-12 px-4" id="home">
+
+  <h2 class="text-4xl font-bold text-[#073a7a] mb-3">
+    Discover Your Style
+  </h2>
+
+  <p class="text-gray-600 mb-6">
+    Premium products curated for you
+  </p>
+
+</section>
+
+<div class="sticky top-[70px] z-40 bg-white shadow-md py-4">
+
+  <!-- Search -->
+  <div class="max-w-xl mx-auto px-4 mb-4">
+    <input 
+      id="searchInput"
+      type="search"
+      placeholder="Search for products..."
+      class="w-full px-5 py-3 rounded-full border border-gray-300 shadow-sm 
+             focus:ring-2 focus:ring-[#073a7a] outline-none"
+    >
+  </div>
+
+
+<!-- Filters -->
+<div class="max-w-5xl mx-auto px-4">
+    <div class="flex flex-wrap gap-3 justify-center">
+
+      <button class="filter-btn px-4 py-2 rounded-full border border-[#073a7a] text-[#073a7a]" data-category="all">All</button>
+      <button class="filter-btn px-4 py-2 rounded-full border border-[#073a7a] text-[#073a7a]" data-category="electronics">Electronics</button>
+      <button class="filter-btn px-4 py-2 rounded-full border border-[#073a7a] text-[#073a7a]" data-category="men's clothing">Fashion</button>
+      <button class="filter-btn px-4 py-2 rounded-full border border-[#073a7a] text-[#073a7a]" data-category="jewelery">Accessories</button>
+      <button class="filter-btn px-4 py-2 rounded-full border border-[#073a7a] text-[#073a7a]" data-category="women's clothing">Women</button>
+      <button class="filter-btn px-4 py-2 rounded-full border border-[#073a7a] text-[#073a7a]" data-category="home">Home Appliances</button>
+      <button class="filter-btn px-4 py-2 rounded-full border border-[#073a7a] text-[#073a7a]" data-category="books">Book</button>
+
+      <select 
+        id="priceFilter" 
+        class="px-4 py-2 rounded-full border border-gray-300 bg-white">
+        <option value="all">All Prices</option>
+        <option value="low">Below ₹1000</option>
+        <option value="mid">₹1000 - ₹3000</option>
+        <option value="high">Above ₹3000</option>
+      </select>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!--  Product -->
+<div id="productContainer" 
+  class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+</div>
+
+
+
+
+<!-- footer -->
+<footer class="text-center py-6 bg-[#052c5c] text-gray-300">
+  © 2026 EasyShop | All Rights Reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+<script src="shopping.js"></script>
+</body>
+</html>

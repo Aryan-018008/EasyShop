@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyShop-Online Shopping</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Navbar -->
+<header class="sticky top-0 z-50 bg-[#073a7a] text-white shadow-md">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+
+    <!-- <h1 class="text-2xl font-bold">EasyShop</h1> -->
+     <h1 class="text-2xl font-bold flex items-center gap-2">
+     <i class="fa-solid fa-bag-shopping"></i>
+     EasyShop
+    </h1>
+
+    <nav class="hidden md:flex gap-8 text-lg font-semibold">
+      <a href="#home" class="hover:text-gray-300">Home</a>
+      <!-- <a href="user/shopping.html" class="hover:text-gray-300">Shop</a> -->
+      <a href="#about" class="hover:text-gray-300">About</a>
+      <a href="#contact" class="hover:text-gray-300">Contact</a>
+      <!-- <a href=" class="hover:text-gray-300">Admin</a> -->
+      <button onclick="openAdminModal()">Admin</button>
+      <button onclick="openLoginModal()">Login</button>
+      <button onclick="openSignupModal()">SignUP</button>
+      <!-- <a href="" class="hover:text-gray-300">UserLogin</a> -->
+    </nav>
+
+
+  </div>
+</header>
+
+<!-- Home -->
+
+<section id="home" class="max-w-6xl mx-auto px-4 py-12">
+  <div class="bg-white border border-gray-200 rounded-2xl shadow-md p-8 grid md:grid-cols-2 gap-8 items-center">
+
+    <!-- Left Portion -->
+    <div class="text-left">
+      <h1 class="text-4xl font-bold text-[#073a7a] mb-3">
+        EasyShop
+      </h1>
+
+      <h2 class="text-2xl text-gray-600 mb-4">
+        Discover Yourself
+      </h2>
+
+      <p class="text-gray-500 mb-6">
+        Premium products curated just for you. Shop smart, live better.
+      </p>
+
+      <button class="bg-[#073a7a] text-white px-6 py-3 rounded font-semibold hover:bg-blue-800 transition mb-6">
+        <a onclick="openLoginModal() ">Start Shopping</a> 
+     </button>
+
+    
+
+      
+
+      <!-- Staticstis -->
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div class="bg-gray-100 p-3 rounded-lg">
+          <p class="text-xl font-bold text-[#073a7a]">0</p>
+          <p class="text-sm text-gray-500">Products</p>
+        </div>
+        <div class="bg-gray-100 p-3 rounded-lg">
+          <p class="text-xl font-bold text-[#073a7a]">0</p>
+          <p class="text-sm text-gray-500">Customers</p>
+        </div>
+        <div class="bg-gray-100 p-3 rounded-lg">
+          <p class="text-xl font-bold text-[#073a7a]">24/7</p>
+          <p class="text-sm text-gray-500">Support</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Portion Image -->
+    <div class="flex justify-center">
+      <img src="https://media.istockphoto.com/id/1925416245/photo/mini-shopping-bag-boxes-and-cart-on-laptop-closeup-online-store.jpg?s=612x612&w=0&k=20&c=uGH6ecamq1xH_yn8Z96q9SdrKTUPuud6_dXwlxEJzEM="
+           alt="shopping"
+           class="w-72">
+    </div>
+
+  </div>
+</section>
+
+<!-- Login PopUp -->
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+
+  <div class="bg-white rounded-xl shadow-lg w-[90%] max-w-md p-6 relative">
+
+    <!-- Close Button -->
+    <button onclick="closeLoginModal()" class="absolute top-3 right-4 text-gray-500 text-xl">&times;</button>
+
+    <h2 class="text-2xl font-bold text-center text-[#073a7a] mb-6">User Login @EasyShop</h2>
+
+    <form id="loginForm" class="space-y-4">
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-semibold">Email</label>
+        <input type="email" id="email"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-semibold">Password</label>
+        <input type="password" id="password"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex flex-col gap-3 mt-4">
+
+        <!-- Login -->
+        <button type="submit"
+          class="bg-[#073a7a] text-white py-2 rounded font-semibold hover:bg-blue-800 transition">
+          Login
+        </button>
+
+        <!-- Guest Login -->
+        <button type="button" onclick="continueAsGuest()"
+          class="border border-[#073a7a] text-[#073a7a] py-2 rounded font-semibold hover:bg-gray-100 transition">
+          Continue as Guest
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<!-- Signup PopUp -->
+<div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+
+  <div class="bg-white rounded-xl shadow-lg w-[90%] max-w-md p-6 relative">
+
+    <!-- Close Button -->
+    <button onclick="closeSignupModal()" class="absolute top-3 right-4 text-gray-500 text-xl">&times;</button>
+
+    <h2 class="text-2xl font-bold text-center text-[#073a7a] mb-6">Create Account</h2>
+
+    <form id="signupForm" class="space-y-4">
+
+      <!-- Name -->
+      <div>
+        <label class="block text-sm font-semibold">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name:"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-semibold">Email</label>
+        <input type="email" id="signupEmail" placeholder="Enter you emali e.g. abc12@gmail.com"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-semibold">Password</label>
+        <input type="password" id="signupPassword" placeholder="Enter Your Password"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Confirm Password -->
+      <div>
+        <label class="block text-sm font-semibold">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Re-enter Your Password"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+        class="w-full bg-[#073a7a] text-white py-2 rounded font-semibold hover:bg-blue-800 transition">
+        Sign Up
+      </button>
+
+    </form>
+
+    <!-- Switch to Login -->
+    <p class="text-sm text-center text-gray-500 mt-4">
+      Already have an account?
+      <span onclick="switchToLogin()" class="text-[#073a7a] cursor-pointer font-semibold">
+        Login
+      </span>
+    </p>
+
+  </div>
+</div>
+
+<!-- Admin  Login PopUp -->
+<div id="adminModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+
+  <div class="bg-white rounded-xl shadow-lg w-[90%] max-w-md p-6 relative border-t-4 border-#073a7a-600">
+
+    <!-- Close -->
+    <button onclick="closeAdminModal()" class="absolute top-3 right-4 text-gray-500 text-xl">&times;</button>
+
+    <h2 class="text-2xl font-bold text-center text-[#073a7a]-600 mb-6">
+      Admin Login @EasyShop
+    </h2>
+
+    <form id="adminForm" class="space-y-4">
+
+      <!-- Admin Email -->
+      <div>
+        <label class="block text-sm font-semibold">Admin Email</label>
+        <input type="email" id="adminEmail"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-semibold">Password</label>
+        <input type="password" id="adminPassword"
+          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+        class="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 transition">
+        Login as Admin
+      </button>
+
+    </form>
+
+    <!-- Note -->
+    <p class="text-xs text-center text-gray-400 mt-4">
+      Restricted access. Only authorized personnel allowed.
+    </p>
+
+  </div>
+</div>
+
+
+<!--  About Us-->
+<section id="about" class="max-w-4xl mx-auto px-4 py-12">
+  <div class="bg-white border border-gray-200 rounded-2xl shadow-md p-8 text-center">
+
+    <h2 class="text-3xl font-bold text-[#073a7a] mb-4">
+      About EasyShop
+    </h2>
+
+    <p class="text-gray-600 text-lg leading-relaxed">
+      EasyShop is your one-stop destination for premium products at affordable prices.
+      We bring you a curated collection of fashion, electronics, and everyday essentials
+      with a seamless shopping experience.
+    </p>
+
+  </div>
+</section>
+
+<!-- contact us -->
+<section id="contact" class="max-w-4xl mx-auto px-4 py-12">
+  <div class="bg-white border border-gray-200 rounded-2xl shadow-md p-8">
+
+    <h2 class="text-3xl font-bold text-[#073a7a] mb-6 text-center">
+      Contact Us
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <div class="space-y-3">
+        <h3 class="text-xl font-semibold">Get in Touch</h3>
+        <p>Email: service@easyshop.com</p>
+        <p>Phone: +91 6542156311</p>
+        <p>Website: www.easyshop.com</p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Connect With Us</h3>
+
+        <div class="flex gap-6 text-2xl mb-6">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+
+        <p class="font-semibold mb-3">📢 For updates</p>
+
+        <div class="flex gap-4">
+          <i class="fa-brands fa-whatsapp text-green-500 text-2xl"></i>
+          <i class="fa-brands fa-telegram text-blue-500 text-2xl"></i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="bg-[#052c5c] text-gray-300 pt-12 pb-6">
+
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+
+    <!-- Brand -->
+    <div>
+      <h2 class="text-2xl font-bold text-white mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-bag-shopping"></i> EasyShop
+      </h2>
+      <p class="text-gray-400 leading-relaxed">
+        Transforming shopping through technology. Bringing quality products
+        closer to you with convenience and trust.
+      </p>
+    </div>
+
+    <!-- Platform -->
+    <div>
+      <h3 class="text-lg font-semibold text-white mb-4">Platform</h3>
+      <ul class="space-y-2">
+        <li><a href="user/terms.html#product_plcy" class="hover:text-white transition">Products</a></li>
+        <li><a href="terms.html" class="hover:text-white transition">Categories</a></li>
+        <li><a href="#" class="hover:text-white transition">Offers</a></li>
+        <li><a href="user/terms.html#pricing_policy" class="hover:text-white transition">Pricing</a></li>
+      </ul>
+    </div>
+
+    <!-- Company -->
+    <div>
+      <h3 class="text-lg font-semibold text-white mb-4">Company</h3>
+      <ul class="space-y-2">
+        <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+        <li><a href="user/blog.html" class="hover:text-white transition">Blog</a></li>
+        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- policy -->
+    <div>
+      <h3 class="text-lg font-semibold text-white mb-4">Legal</h3>
+      <ul class="space-y-2">
+        <li><a href="user/terms.html#prv_plcy" class="hover:text-white transition">Privacy Policy</a></li>
+        <li><a href="user/terms.html#T&C" class="hover:text-white transition">Terms of Service</a></li>
+        <li><a href="user/terms.html#return_plcy" class="hover:text-white transition">Return Policy</a></li>
+        <li><a href="user/terms.html#refund_plcy" class="hover:text-white transition">Refund Policy</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  
+  <div class="border-t border-gray-600 mt-10 pt-6 text-center text-gray-400">
+    © 2026 EasyShop | All Rights Reserved.
+  </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>  <!--Sweet Alert  -->
+<script src="script.js"></script>
+</body>
+</html>
