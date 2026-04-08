@@ -246,18 +246,153 @@ const products = [
   },
   {
     id: 5,
-    title: "Women Dress",
-    price: 1200,
+    title: "Necklece",
+    price: 1899,
     category: "Women",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 6,
+    title: "Atomic Habits",
+    price: 399,
+    category: "book",
+    image: "https://m.media-amazon.com/images/I/81wgcld4wxL.jpg"
+  },{
+    id: 7,
+    title: "One Indian Girl",
+    price: 699,
+    category: "book",
+    image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg"
+  },
+  {
+    id: 8,
     title: "Atomic Habits Book",
     price: 399,
     category: "book",
     image: "https://via.placeholder.com/200"
-  }
+  },
+  {
+    id: 9,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 10,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 11,
+    title: "The Power of Subconscious Mind",
+    price: 829,
+    category: "book",
+    image: "https://rupapublications.co.in/images/1725973829.jpg"
+  },
+  {
+    id: 12,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 13,
+    title: "Cargo",
+    price: 799,
+    category: "fashion",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 14,
+    title: "Air Fryer",
+    price: 1199,
+    category: "homeappliances",
+    image: "https://www.philips.co.in/c-dam/b2c/kitchen/airfryer/AirfryerImages/airfryer-s-xs.png"
+  },
+  {
+    id: 15,
+    title: "The God Of Small Things",
+    price: 399,
+    category: "book",
+    image: "https://m.media-amazon.com/images/I/91saO95VziL._AC_UF1000,1000_QL80_.jpg"
+  },
+  {
+    id: 16,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 17,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 18,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 19,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  
+  {
+    id: 20,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 21,
+    title: "Atomic Habits",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 22,
+    title: "Atomic Habits Book",
+    price: 399,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 23,
+    title: "Earphone",
+    price: 349,
+    category: "electronics",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+    id: 24,
+    title: "Wings of Fire",
+    price: 449,
+    category: "book",
+    image: "https://via.placeholder.com/200"
+  },
+  {
+      id: 25,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    }
+
 ];
 
 let filteredProducts = [...products];
