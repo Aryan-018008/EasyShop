@@ -39,12 +39,6 @@ function continueAsGuest() {
 document.getElementById("loginForm").addEventListener("submit", function(e) {
   e.preventDefault();
   loginUser();
-
-  // Fake success (no backend yet)
-  // Swal.fire("Success", "Login successful!", "success").then(() => {
-  //   // window.location.href = openLoginModal();
-  //   openLoginModal();
-  // });
 });
 
 
@@ -123,29 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//SignUp APi
-// async function signupUser() {
-//   const name = document.getElementById("name").value;
-//   const email = document.getElementById("signupEmail").value;
-//   const password = document.getElementById("signupPassword").value;
 
-//   const res = await fetch("http://localhost:5000/api/auth/signup", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({ name, email, password })
-//   });
-
-//   const data = await res.json();
-
-//   if (res.ok) {
-//     localStorage.setItem("token", data.token);
-//     window.location.href = "user/shopping.html";
-//   } else {
-//     alert(data.msg);
-//   }
-// }
 
 // Signup API
 async function signupUser() {
@@ -191,35 +163,13 @@ async function signupUser() {
     Swal.fire("Success", "Account created! Please login.", "success")
       .then(() => {
         closeSignupModal();
-        openLoginModal(); // 👉 redirect to login modal instead of shopping
+        openLoginModal(); 
       });
   } else {
     Swal.fire("Error", data.msg, "error");
   }
 }
 
-// Login Api
-// async function loginUser() {
-//   const email = document.getElementById("email").value;
-//   const password = document.getElementById("password").value;
-
-//   const res = await fetch("http://localhost:5000/api/auth/login", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({ email, password })
-//   });
-
-//   const data = await res.json();
-
-//   if (res.ok) {
-//     localStorage.setItem("token", data.token);
-//     window.location.href = "user/shopping.html";
-//   } else {
-//     alert(data.msg);
-//   }
-// }
 
 async function loginUser() {
   const email = document.getElementById("email").value.trim();
@@ -270,4 +220,6 @@ async function loginUser() {
     Swal.fire("Error", data.msg, "error");
   }
 }
+
+localStorage.removeItem("guestId")
 
