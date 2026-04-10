@@ -169,6 +169,10 @@ const displayName = username.includes("@")
 
 document.getElementById("username").innerText = displayName;
 
+let cart = [];
+const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "http://127.0.0.1:5000/";
+
 
 // ================= DATE & TIME =================
 function updateDateTime() {
@@ -255,48 +259,48 @@ const products = [
     id: 6,
     title: "Atomic Habits",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://m.media-amazon.com/images/I/81wgcld4wxL.jpg"
   },{
     id: 7,
     title: "One Indian Girl",
     price: 699,
-    category: "book",
+    category: "books",
     image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg"
   },
   {
     id: 8,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 9,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 10,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 11,
     title: "The Power of Subconscious Mind",
     price: 829,
-    category: "book",
+    category: "books",
     image: "https://rupapublications.co.in/images/1725973829.jpg"
   },
   {
     id: 12,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
@@ -317,35 +321,35 @@ const products = [
     id: 15,
     title: "The God Of Small Things",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://m.media-amazon.com/images/I/91saO95VziL._AC_UF1000,1000_QL80_.jpg"
   },
   {
     id: 16,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 17,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 18,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 19,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   
@@ -353,21 +357,21 @@ const products = [
     id: 20,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 21,
     title: "Atomic Habits",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
     id: 22,
     title: "Atomic Habits Book",
     price: 399,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
@@ -381,7 +385,7 @@ const products = [
     id: 24,
     title: "Wings of Fire",
     price: 449,
-    category: "book",
+    category: "books",
     image: "https://via.placeholder.com/200"
   },
   {
@@ -391,7 +395,295 @@ const products = [
       rating: { rate: 4.5 },
       image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
       category: "books"
-    }
+    },
+  {
+      id: 26,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 27,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 28,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 29,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 30,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 31,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 32,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 33,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 34,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 35,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 36,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 37,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 38,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 39,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 40,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 41,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 42,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 43,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 44,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 45,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 46,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 47,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 48,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 49,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 50,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 51,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 52,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 53,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 54,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 55,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 56,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 57,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 58,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 59,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 60,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
+  {
+      id: 61,
+      title: "One Indian Girl",
+      price: 16,
+      rating: { rate: 4.5 },
+      image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/94/One_Indian_Girl.jpg/250px-One_Indian_Girl.jpg",
+      category: "books"
+    },
 
 ];
 
@@ -467,16 +759,89 @@ document.getElementById("categoryFilter").addEventListener("change", applyFilter
 document.getElementById("priceFilter").addEventListener("change", applyFilters);
 
 
-// ================= CART =================
-function attachCartEvents() {
-  const buttons = document.querySelectorAll(".addToCart");
 
-  buttons.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.push(filteredProducts[index] || products[index]);
-      localStorage.setItem("cart", JSON.stringify(cart));
+
+// function attachCartEvents() {
+//   document.querySelectorAll(".addToCart").forEach(btn => {
+//     btn.addEventListener("click", async () => {
+//       const card = btn.closest(".product");
+//       const title = card.querySelector("h3").innerText;
+//       const price = Number(card.dataset.price);
+
+//       let item = {
+//         title,
+//         price,
+//         qty: 1
+//       };
+
+//       // backend call
+//       const userId = getUserId();
+
+//       let res = await fetch(`/api/cart/${userId}`);
+//       let data = await res.json();
+//       let cart = data?.items || [];
+
+//       const existing = cart.find(p => p.title === title);
+
+//       if (existing) {
+//         existing.qty++;
+//       } else {
+//         cart.push(item);
+//       }
+
+//       await fetch("/api/cart", {
+//         method: "POST",
+//         headers: {"Content-Type": "application/json"},
+//         body: JSON.stringify({ userId, items: cart })
+//       });
+
+//       updateCartCount();
+//       loadCart(); // 🔥 refresh instantly
+
+//       Swal.fire({
+//         icon: "success",
+//         title: "Added to Cart",
+//         timer: 1000,
+//         showConfirmButton: false
+//       });
+//     });
+//   });
+// }
+
+function attachCartEvents() {
+  document.querySelectorAll(".addToCart").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const card = btn.closest(".product");
+      const title = card.querySelector("h3").innerText;
+      const price = Number(card.dataset.price);
+
+      let item = { title, price, qty: 1 };
+
+      const userId = getUserId();
+
+      let res = await fetch(`${BASE_URL}/api/cart/${userId}`);
+      let data = await res.json();
+      let cart = data?.items || [];
+
+      const existing = cart.find(p => p.title === title);
+
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push(item);
+      }
+
+      await fetch(`${BASE_URL}/api/cart`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ userId, items: cart })
+      });
+
       updateCartCount();
+      await loadCart();
+
+      // 🔥 ADD THIS (IMPORTANT)
+      // document.getElementById("cartPopup").classList.remove("hidden");
 
       Swal.fire({
         icon: "success",
@@ -488,12 +853,223 @@ function attachCartEvents() {
   });
 }
 
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  document.getElementById("cartCount").innerText = cart.length;
+async function updateCartCount() {
+  const userId = getUserId();
+
+  const res = await fetch(`${BASE_URL}/api/cart/${userId}`);
+  const data = await res.json();
+
+  const count = data?.items?.length || 0;
+  document.getElementById("cartCount").innerText = count;
 }
+
 updateCartCount();
 
 
 // ================= INIT =================
 displayProducts(products);
+
+
+
+if (!localStorage.getItem("guestId")) {
+  localStorage.setItem("guestId", "guest_" + Date.now());
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  loadCart();
+});
+
+//UserId
+// function getUserId() {
+//   const user = localStorage.getItem("user");
+
+//   if (user && user !== "Guest") return user;
+
+//   return localStorage.getItem("guestId");
+// }
+
+// function getUserId() {
+//   const user = JSON.parse(localStorage.getItem("user"));
+
+//   if (user && user._id) return user._id;
+
+//   return localStorage.getItem("guestId");
+// }
+
+function getUserId() {
+  try {
+    const userData = localStorage.getItem("user");
+
+    // agar plain string hai → ignore
+    if (!userData || userData.startsWith("{") === false) {
+      return localStorage.getItem("guestId");
+    }
+
+    const user = JSON.parse(userData);
+
+    return user._id || localStorage.getItem("guestId");
+
+  } catch (err) {
+    return localStorage.getItem("guestId");
+  }
+}
+
+//Cart
+function toggleCart() {
+  const popup = document.getElementById("cartPopup");
+  popup.classList.toggle("hidden");
+
+  if (!popup.classList.contains("hidden")) {
+    loadCart(); // load cart when opened
+  }
+}
+
+document.getElementById("cartBtn").addEventListener("click", toggleCart);
+// document.getElementById("cartPopup").classList.remove("hidden");
+
+//Cart load
+// async function loadCart() {
+//   // const userId = localStorage.getItem("user");
+//   const userId = getUserId();
+
+//   const res = await fetch(`/api/cart/${userId}`);
+//   const data = await res.json();
+
+//   window.cart = data?.items || [];
+//   displayCart();
+// }
+
+async function loadCart() {
+  const userId = getUserId();
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/cart/${userId}`);
+    const data = await res.json();
+
+    cart = data?.items || [];
+    displayCart();
+  } catch (err) {
+    console.log("Cart load error", err);
+  }
+}
+
+// Cart Display
+function displayCart() {
+  const container = document.getElementById("cartItems");
+
+  if (!cart.length) {
+    container.innerHTML = "<p class='text-center text-gray-500'>Cart is empty 😢</p>";
+    document.getElementById("totalPrice").innerText = "0";
+    return;
+  }
+
+  let total = 0;
+
+  container.innerHTML = cart.map((item, i) => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+
+    return `
+      <div class="border-b py-3 flex justify-between items-center">
+
+        <div class="flex items-center gap-3">
+          <img src="https://via.placeholder.com/50" class="w-12 h-12 rounded">
+          <div>
+            <p class="font-semibold">${item.title}</p>
+            <p class="text-sm text-gray-500">
+              ₹${item.price} × ${item.qty} = 
+              <b>₹${itemTotal}</b>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="decreaseQty(${i})" 
+            class="px-2 bg-gray-200 rounded">-</button>
+
+          <span>${item.qty}</span>
+
+          <button onclick="increaseQty(${i})" 
+            class="px-2 bg-gray-200 rounded">+</button>
+
+          <button onclick="removeItem(${i})" 
+            class="text-red-500">❌</button>
+        </div>
+
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("totalPrice").innerText = total;
+}
+
+//Remove Cart
+function removeItem(i) {
+  cart.splice(i, 1);
+  saveCart();
+}
+
+//inc + dec
+function increaseQty(i) {
+  cart[i].qty++;
+  saveCart();
+}
+
+function decreaseQty(i) {
+  if (cart[i].qty > 1) cart[i].qty--;
+  else cart.splice(i, 1);
+
+  saveCart();
+}
+
+// Cart Save
+async function saveCart() {
+  // const userId = localStorage.getItem("user");
+  const userId = getUserId();
+
+  await fetch(`${BASE_URL}/api/cart`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ userId, items: cart })
+  });
+
+  displayCart();
+}
+
+// Billing
+function updateTotal() {
+  let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  document.getElementById("totalPrice").innerText = total;
+}
+
+//CheckOut
+async function checkout() {
+  const userId = getUserId();
+  const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+  await fetch("/api/order", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ userId, items: cart, total })
+  });
+
+  Swal.fire("Order Placed 🎉");
+
+  cart = [];
+  await saveCart();
+  updateCartCount();
+}
+
+//Invoice
+function printInvoice() {
+  let content = "Invoice\n\n";
+
+  cart.forEach(item => {
+    content += `${item.title} x ${item.qty} = ₹${item.price * item.qty}\n`;
+  });
+
+  const win = window.open("", "", "width=600,height=600");
+  win.document.write(`<pre>${content}</pre>`);
+  win.print();
+}
+
