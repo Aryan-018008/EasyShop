@@ -914,6 +914,10 @@ function getUserId() {
   }
 }
 
+// function getUserId() {
+//   const user = JSON.parse(localStorage.getItem("user"));
+//   return user?._id || localStorage.getItem("guestId");
+// }
 //Cart
 function toggleCart() {
   const popup = document.getElementById("cartPopup");
@@ -1073,3 +1077,226 @@ function printInvoice() {
   win.print();
 }
 
+
+//Profile Modal
+
+// ================= PROFILE MODAL =================
+const profileModal = document.getElementById("profileModal");
+const closeProfile = document.getElementById("closeProfile");
+
+document.querySelector('#dropdownMenu a:nth-child(1)')
+  .addEventListener("click", () => {
+    profileModal.classList.remove("hidden");
+    loadProfile();
+  });
+
+closeProfile.addEventListener("click", () => {
+  profileModal.classList.add("hidden");
+});
+
+// Image preview
+document.getElementById("changeImageBtn").onclick = () => {
+  document.getElementById("profileImage").click();
+};
+
+document.getElementById("profileImage").onchange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    document.getElementById("profilePreview").src = URL.createObjectURL(file);
+  }
+};
+
+// ================= LOAD PROFILE =================
+async function loadProfile() {
+  const userId = getUserId();
+
+  const res = await fetch(`${BASE_URL}/api/user/${userId}`);
+  const user = await res.json();
+
+  document.getElementById("profileName").value = user.name || "";
+  document.getElementById("profileEmail").value = user.email || "";
+  document.getElementById("profileLocation").value = user.location || "";
+  document.getElementById("profileContact").value = user.contact || "";
+
+  if (user.image) {
+    document.getElementById("profilePreview").src = user.image;
+  }
+}
+
+// ================= SAVE PROFILE =================
+document.getElementById("saveProfileBtn").addEventListener("click", async () => {
+  const userId = getUserId();
+
+  const profileData = {
+    name: document.getElementById("profileName").value,
+    location: document.getElementById("profileLocation").value,
+    contact: document.getElementById("profileContact").value,
+    image: document.getElementById("profilePreview").src
+  };
+
+  await fetch(`${BASE_URL}/api/user/${userId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(profileData)
+  });
+
+  Swal.fire({
+    icon: "success",
+    title: "Profile Updated",
+    timer: 1200,
+    showConfirmButton: false
+  });
+
+  profileModal.classList.add("hidden");
+});
+
+
+
+//History Modal
+// ================= HISTORY MODAL =================
+const historyModal = document.getElementById("historyModal");
+const closeHistory = document.getElementById("closeHistory");
+
+document.getElementById("openHistory").addEventListener("click", async (e) => {
+  e.preventDefault();
+  dropdown.classList.add("hidden");
+  historyModal.classList.remove("hidden");
+  loadHistory();
+});
+
+closeHistory.addEventListener("click", () => {
+  historyModal.classList.add("hidden");
+});
+
+// ================= LOAD HISTORY =================
+async function loadHistory() {
+  const userId = getUserId();
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/order/${userId}`);
+    const orders = await res.json();
+
+    const list = document.getElementById("historyList");
+    list.innerHTML = "";
+
+    if (!orders || orders.length === 0) {
+      list.innerHTML = "<p class='text-center text-gray-500'>No orders yet 😢</p>";
+      return;
+    }
+
+    orders.forEach(order => {
+      list.innerHTML += `
+        <div class="border p-3 rounded mb-3">
+          <p><b>Total:</b> ₹${order.total}</p>
+          <p><b>Items:</b> ${order.items.length}</p>
+          <p class="text-sm text-gray-500">${new Date(order.createdAt).toLocaleString()}</p>
+        </div>
+      `;
+    });
+  } catch (err) {
+    document.getElementById("historyList").innerHTML =
+      "<p class='text-red-500 text-center'>Error loading history</p>";
+  }
+} 
+
+
+// ================= ADDRESS MODAL =================
+const addressModal = document.getElementById("addressModal");
+const closeAddress = document.getElementById("closeAddress");
+
+document.getElementById("openAddress").addEventListener("click", (e) => {
+  e.preventDefault();
+  dropdown.classList.add("hidden");
+  addressModal.classList.remove("hidden");
+  loadAddress();
+});
+
+closeAddress.addEventListener("click", () => {
+  addressModal.classList.add("hidden");
+});
+
+// ================= LOAD ADDRESS =================
+async function loadAddress() {
+  const userId = getUserId();
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/user/${userId}`);
+    const user = await res.json();
+
+    if (user.address) {
+      const a = user.address;
+
+      document.getElementById("addrLine").value = a.line || "";
+      document.getElementById("addrDist").value = a.dist || "";
+      document.getElementById("addrState").value = a.state || "";
+      document.getElementById("addrPin").value = a.pin || "";
+
+      document.getElementById("savedAddressBox").classList.remove("hidden");
+      document.getElementById("savedAddressText").innerText =
+        `${a.line}, ${a.dist}, ${a.state} - ${a.pin}`;
+    }
+  } catch (err) {
+    console.log("Error loading address", err);
+  }
+}
+
+// ================= SAVE ADDRESS =================
+document.getElementById("saveAddressBtn").addEventListener("click", async () => {
+  const userId = getUserId();
+
+  const address = {
+    line: document.getElementById("addrLine").value,
+    dist: document.getElementById("addrDist").value,
+    state: document.getElementById("addrState").value,
+    pin: document.getElementById("addrPin").value
+  };
+
+  await fetch(`${BASE_URL}/api/user/${userId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ address })
+  });
+
+  Swal.fire({
+    icon: "success",
+    title: "Address Saved",
+    timer: 1200,
+    showConfirmButton: false
+  });
+
+  loadAddress();
+});
+
+
+// OPEN SETTINGS
+document.getElementById("openSettings").onclick = () => {
+  document.getElementById("settingsModal").classList.remove("hidden");
+};
+
+// CLOSE
+document.getElementById("closeSettings").onclick = () => {
+  document.getElementById("settingsModal").classList.add("hidden");
+};
+
+// SAVE SETTINGS
+document.getElementById("saveSettingsBtn").onclick = async () => {
+  const userId = getUserId();
+
+  const email = document.getElementById("newEmail").value;
+  const password = document.getElementById("newPassword").value;
+
+  await fetch(`${BASE_URL}/api/auth/update/${userId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  Swal.fire({
+    icon: "success",
+    title: "Settings Updated",
+    timer: 1200,
+    showConfirmButton: false
+  });
+
+  document.getElementById("settingsModal").classList.add("hidden");
+};
