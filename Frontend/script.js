@@ -203,6 +203,7 @@ async function loginUser() {
   const data = await res.json();
 
   if (res.ok) {
+    // localStorage.setItem("user", JSON.stringify(user));
   localStorage.setItem("token", data.token);
 
   // 🔥 MAIN FIX
