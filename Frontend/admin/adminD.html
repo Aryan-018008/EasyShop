@@ -1,14 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="transition-colors duration-300">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Pannel - EasyShop</title>
-</head>
-<body>
-    <h1>Admin Dashboard</h1>
-    <p>Hello Admin</p>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | EasyShop</title>
 
-    <script src="admin.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+    };
+  </script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+
+<!-- NAVBAR -->
+<nav class="bg-[#073a7a] text-white px-6 py-3 flex justify-between items-center">
+  <div class="text-xl font-bold">EasyShop Admin</div>
+
+  <div class="flex items-center gap-5">
+    <!-- Notification -->
+    <button id="notifBtn" class="relative">
+      🔔
+      <span id="notifCount"
+        class="absolute -top-2 -right-2 bg-red-500 text-xs px-1 rounded-full hidden">0</span>
+    </button>
+
+    <button id="themeToggle"
+      class="w-full p-2 bg-[#073a7a] text-white rounded">
+      🌙
+    </button>
+
+    <!-- Admin Menu -->
+    <div class="relative">
+      <button id="adminBtn" class="bg-white text-[#073a7a] px-3 py-1 rounded font-medium">
+        Admin 
+      </button>
+
+      <div id="adminMenu"
+        class="hidden absolute right-0 mt-2 bg-white text-gray-800 rounded shadow w-40">
+        <button id="logoutBtn" class="block w-full text-left px-4 py-2 hover:bg-gray-100">
+          <a href="index.html">Logout</a>
+          
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN WRAPPER -->
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-white dark:bg-gray-800 border-r p-5 space-y-4">
+
+    <button data-page="dashboard"
+      class="menuBtn w-full text-left p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+      📊 Dashboard
+    </button>
+
+    <button data-page="users"
+      class="menuBtn w-full text-left p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+      👥 Users
+    </button>
+
+    <button data-page="products"
+      class="menuBtn w-full text-left p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+      🛍 Products
+    </button>
+
+    <button data-page="orders"
+      class="menuBtn w-full text-left p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+      📦 Orders
+    </button>
+
+    <button data-page="feedback"
+      class="menuBtn w-full text-left p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700">
+      💬 Feedback
+    </button>
+
+    <hr>
+
+    
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="flex-1 p-6">
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page">
+      <h2 class="text-2xl font-semibold mb-4">Dashboard Overview</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+        <div class="card">
+          <p>Total Users</p>
+          <h3 id="totalUsers">0</h3>
+        </div>
+
+        <div class="card">
+          <p>Total Orders</p>
+          <h3 id="totalOrders">0</h3>
+        </div>
+
+        <div class="card">
+          <p>Total Revenue</p>
+          <h3 id="totalRevenue">₹0</h3>
+        </div>
+
+        <div class="card">
+          <p>Total Products</p>
+          <h3 id="totalProducts">0</h3>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- USERS -->
+    <section id="users" class="page hidden">
+      <h2 class="text-2xl font-semibold mb-4">Users</h2>
+      <div id="usersList"></div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="page hidden">
+      <h2 class="text-2xl font-semibold mb-4">Products</h2>
+
+      <input id="productSearch"
+        placeholder="Search products..."
+        class="border p-2 rounded w-full mb-4" />
+
+      <div id="productsList" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- ORDERS -->
+    <section id="orders" class="page hidden">
+      <h2 class="text-2xl font-semibold mb-4">Orders</h2>
+      <div id="ordersList"></div>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section id="feedback" class="page hidden">
+      <h2 class="text-2xl font-semibold mb-4">User Feedback</h2>
+      <div id="feedbackList"></div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="bg-[#052c5c] text-white text-center py-3">
+  © 2026 EasyShop. All rightd reserved
+</footer>
+
+<script src="admin.js"></script>
+
+<!-- <style>
+  .card {
+    @apply bg-white dark:bg-gray-800 p-5 rounded shadow text-center;
+  }
+  .card h3 {
+    @apply text-2xl font-bold mt-2;
+  } -->
+</style>
+
 </body>
 </html>
