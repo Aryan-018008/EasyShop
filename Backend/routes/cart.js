@@ -12,7 +12,7 @@ router.get("/:userId", async (req, res) => {
 router.post("/", async (req, res) => {
   const { userId, items } = req.body;
 
-  let cart = await Cart.findOne({ userId });
+  let cart = await Cart.findOne({ userId },{items},{ upsert: true, new: true });
 
   if (cart) {
     cart.items = items;
