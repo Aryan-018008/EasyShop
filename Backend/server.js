@@ -8,6 +8,8 @@ const connectDB = require("./config/db");
 const authRoutes = require("./routes/auth");
 const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/order");
+const feedbackRoutes = require("./routes/feedback");
+
 
 const app = express();
 
@@ -36,6 +38,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/order", orderRoutes);
+app.use("/api/feedback", feedbackRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
