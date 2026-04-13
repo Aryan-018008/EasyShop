@@ -686,6 +686,22 @@ const products = [
     },
 
 ];
+// localStorage.setItem("products", JSON.stringify(products));
+
+//Product fetch
+function getProductsFromStorage() {  
+  let data = JSON.parse(localStorage.getItem("products"));  
+  
+  if (!data || data.length === 0) {  
+    localStorage.setItem("products", JSON.stringify(products));  
+    data = products;  
+  }  
+  
+  return data;  
+}  
+
+const localProducts = getProductsFromStorage();
+
 
 let filteredProducts = [...products];
 
@@ -751,6 +767,8 @@ function applyFilters() {
 
   displayProducts(result);
 }
+
+
 
 
 // ================= EVENTS =================
@@ -962,7 +980,7 @@ function displayCart() {
   const container = document.getElementById("cartItems");
 
   if (!cart.length) {
-    container.innerHTML = "<p class='text-center text-gray-500'>Cart is empty 😢</p>";
+    container.innerHTML = "<p class='text-center text-gray-500'>Cart is empty . Start Shopping</p>";
     document.getElementById("totalPrice").innerText = "0";
     return;
   }
@@ -1051,7 +1069,7 @@ async function checkout() {
   const userId = getUserId();
   const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
 
-  await fetch("/api/order", {
+  await fetch(`${BASE_URL}/api/order`, {
     method: "POST",
     headers: {"Content-Type":"application/json"},
     body: JSON.stringify({ userId, items: cart, total })

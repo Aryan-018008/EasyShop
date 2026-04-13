@@ -41,10 +41,7 @@
 
       <div id="adminMenu"
         class="hidden absolute right-0 mt-2 bg-white text-gray-800 rounded shadow w-40">
-        <button id="logoutBtn" class="block w-full text-left px-4 py-2 hover:bg-gray-100">
-          <a href="index.html">Logout</a>
-          
-        </button>
+        <a href="/index.html">Logout</a>
       </div>
     </div>
   </div>
@@ -86,66 +83,149 @@
     
   </aside>
 
-  <!-- CONTENT -->
+  <!-- Content -->
   <main class="flex-1 p-6">
-
-    <!-- DASHBOARD -->
+    <!-- Dashboard -->
     <section id="dashboard" class="page">
-      <h2 class="text-2xl font-semibold mb-4">Dashboard Overview</h2>
+  <h2 class="text-2xl font-semibold mb-6 text-gray-700">Dashboard Overview</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <div class="card">
-          <p>Total Users</p>
-          <h3 id="totalUsers">0</h3>
-        </div>
+    <!-- Users -->
+    <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-blue-500 hover:shadow-md transition">
+      <p class="text-gray-500 text-sm">Total Users 👥</p>
+      <h3 id="totalUsers" class="text-2xl font-bold text-gray-800 mt-2">0</h3>
+    </div>
 
-        <div class="card">
-          <p>Total Orders</p>
-          <h3 id="totalOrders">0</h3>
-        </div>
+    <!-- Orders -->
+    <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-green-500 hover:shadow-md transition">
+      <p class="text-gray-500 text-sm">Total Orders 📦</p>
+      <h3 id="totalOrders" class="text-2xl font-bold text-gray-800 mt-2">0</h3>
+    </div>
 
-        <div class="card">
-          <p>Total Revenue</p>
-          <h3 id="totalRevenue">₹0</h3>
-        </div>
+    <!-- Revenue -->
+    <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-yellow-500 hover:shadow-md transition">
+      <p class="text-gray-500 text-sm">Total Revenue 💰</p>
+      <h3 id="totalRevenue" class="text-2xl font-bold text-gray-800 mt-2">₹0</h3>
+    </div>
 
-        <div class="card">
-          <p>Total Products</p>
-          <h3 id="totalProducts">0</h3>
-        </div>
+    <!-- Products -->
+    <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-purple-500 hover:shadow-md transition">
+      <p class="text-gray-500 text-sm">Total Products 🛍️</p>
+      <h3 id="totalProducts" class="text-2xl font-bold text-gray-800 mt-2">61</h3>
+    </div>
 
-      </div>
-    </section>
+    <!-- Feedback -->
+    <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-purple-500 hover:shadow-md transition">
+     <p class="text-gray-500 text-sm">Feedbacks ✍️</p>
+     <h3 id="totalFeedbacks" class="text-2xl font-bold text-gray-800 mt-2">0</h3>
+    </div>
 
-    <!-- USERS -->
+  </div>
+</section>
+
+    <!-- User -->
     <section id="users" class="page hidden">
       <h2 class="text-2xl font-semibold mb-4">Users</h2>
-      <div id="usersList"></div>
+      <div class="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow">
+  <table class="w-full text-left border-collapse">
+    
+    <thead class="bg-gray-100 dark:bg-gray-700">
+      <tr>
+        <th class="p-3">#</th>
+        <th class="p-3">Name</th>
+        <th class="p-3">Email</th>
+        <th class="p-3">Orders</th>
+      </tr>
+    </thead>
+
+    <tbody id="usersList"></tbody>
+
+  </table>
+</div>
     </section>
 
-    <!-- PRODUCTS -->
+    <!-- Product-->
     <section id="products" class="page hidden">
-      <h2 class="text-2xl font-semibold mb-4">Products</h2>
+  <h2 class="text-2xl font-semibold mb-4">Products</h2>
 
-      <input id="productSearch"
-        placeholder="Search products..."
-        class="border p-2 rounded w-full mb-4" />
+  <!-- Top Bar -->
+  <div class="flex justify-between items-center mb-4">
+    <input id="productSearch"
+      placeholder="Search products..."
+      class="border p-2 rounded w-1/2" />
 
-      <div id="productsList" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
-    </section>
+    <button onclick="openAddProductModal()"
+      class="bg-[#073a7a] text-white px-4 py-2 rounded">
+      + Add Product
+    </button>
+  </div>
 
-    <!-- ORDERS -->
+  <!-- Table -->
+  <div class="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow">
+    <table class="w-full text-left border-collapse">
+      
+      <thead class="bg-gray-100 dark:bg-gray-700">
+        <tr>
+          <th class="p-3">#</th>
+          <th class="p-3">Image</th>
+          <th class="p-3">Name</th>
+          <th class="p-3">Price</th>
+          <th class="p-3">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody id="productsList"></tbody>
+
+    </table>
+  </div>
+
+</section>
+
+    <!-- Orders -->
     <section id="orders" class="page hidden">
-      <h2 class="text-2xl font-semibold mb-4">Orders</h2>
-      <div id="ordersList"></div>
-    </section>
+  <h2 class="text-2xl font-semibold mb-4">All Orders</h2>
 
-    <!-- FEEDBACK -->
+  <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
+    <table class="w-full text-left">
+      <thead>
+        <tr class="border-b">
+          <th class="p-2">#</th>
+          <th class="p-2">User</th>
+          <th class="p-2">Email</th>
+          <th class="p-2">Items</th>
+          <th class="p-2">Total</th>
+          <th class="p-2">Date</th>
+        </tr>
+      </thead>
+
+      <tbody id="ordersList"></tbody>
+    </table>
+  </div>
+</section>
+
+    <!-- feedback -->
     <section id="feedback" class="page hidden">
-      <h2 class="text-2xl font-semibold mb-4">User Feedback</h2>
-      <div id="feedbackList"></div>
-    </section>
+  <h2 class="text-2xl font-semibold mb-6 text-[#073a7a]">User Feedback</h2>
+
+  <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
+    
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+        Feedback List
+      </h3>
+      <span class="text-sm text-gray-400">Latest Messages</span>
+    </div>
+
+    <!-- Feedback Container -->
+    <div id="feedbackList" class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+      
+      
+    </div>
+
+  </div>
+</section>
 
   </main>
 </div>
