@@ -11,4 +11,14 @@ router.post("/", async (req, res) => {
   res.json({ message: "Order placed" });
 });
 
+// All order (Admin)
+router.get("/", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
