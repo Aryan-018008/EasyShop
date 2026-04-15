@@ -2,12 +2,51 @@
 function openLoginModal() {
   document.getElementById("loginModal").classList.remove("hidden");
   document.getElementById("loginModal").classList.add("flex");
+  document.body.classList.add("no-scroll"); 
 }
 
 // Close Modal
 function closeLoginModal() {
   document.getElementById("loginModal").classList.add("hidden");
+  document.body.classList.remove("no-scroll");
 }
+
+const togglePassword = document.getElementById("togglePassword");
+const password = document.getElementById("password");
+
+if (togglePassword) {
+  togglePassword.addEventListener("click", () => {
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+
+    togglePassword.classList.toggle("fa-eye");
+    togglePassword.classList.toggle("fa-eye-slash");
+  });
+}
+
+
+const toggleSignupPassword = document.getElementById("toggleSignupPassword");
+const signupPassword = document.getElementById("signupPassword");
+
+toggleSignupPassword.addEventListener("click", () => {
+  const type = signupPassword.getAttribute("type") === "password" ? "text" : "password";
+  signupPassword.setAttribute("type", type);
+
+  toggleSignupPassword.classList.toggle("fa-eye");
+  toggleSignupPassword.classList.toggle("fa-eye-slash");
+});
+
+// Confirm Password Toggle
+const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+const confirmPassword = document.getElementById("confirmPassword");
+
+toggleConfirmPassword.addEventListener("click", () => {
+  const type = confirmPassword.getAttribute("type") === "password" ? "text" : "password";
+  confirmPassword.setAttribute("type", type);
+
+  toggleConfirmPassword.classList.toggle("fa-eye");
+  toggleConfirmPassword.classList.toggle("fa-eye-slash");
+});
 
 
 
@@ -46,11 +85,13 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 function openSignupModal() {
   document.getElementById("signupModal").classList.remove("hidden");
   document.getElementById("signupModal").classList.add("flex");
+   document.body.classList.add("no-scroll");
 }
 
 // Close Signup Modal
 function closeSignupModal() {
   document.getElementById("signupModal").classList.add("hidden");
+  document.body.classList.remove("no-scroll");
 }
 
 // Switch between modals
@@ -76,12 +117,14 @@ document.addEventListener("DOMContentLoaded", function () {
 function openAdminModal() {
   document.getElementById("adminModal").classList.remove("hidden");
   document.getElementById("adminModal").classList.add("flex");
+  document.body.classList.add("no-scroll");
   
 }
 
 // Close Admin Modal
 function closeAdminModal() {
   document.getElementById("adminModal").classList.add("hidden");
+  document.body.classList.remove("no-scroll");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -170,6 +213,33 @@ async function signupUser() {
   }
 }
 
+//Customer Count
+// async function loadCustomerCount() {
+//   try {
+//     // const res = await fetch("http://localhost:5000/api/auth/users/count");
+//     const res = await fetch("http://localhost:5000/api/auth/users");
+//     const data = await res.json();
+
+//     document.getElementById("customerCount").innerText = data.count;
+//   } catch (err) {
+//     console.log("Error fetching customers", err);
+//   }
+// }
+
+async function loadCustomerCount() {
+  try {
+    const res = await fetch("http://localhost:5000/api/auth/users");
+    const users = await res.json();
+
+    document.getElementById("customerCount").innerText = users.length;
+  } catch (err) {
+    console.log("Error fetching customers", err);
+  }
+}
+
+// page load pe call karo
+window.addEventListener("DOMContentLoaded", loadCustomerCount);
+
 
 async function loginUser() {
   const email = document.getElementById("email").value.trim();
@@ -223,4 +293,8 @@ async function loginUser() {
 }
 
 localStorage.removeItem("guestId")
+
+function goToAdminDashboard() {
+  window.location.href = "admin/adminD.html";
+}
 
