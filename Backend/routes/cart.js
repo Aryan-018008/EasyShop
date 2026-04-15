@@ -9,19 +9,37 @@ router.get("/:userId", async (req, res) => {
 });
 
 // SAVE CART
+// router.post("/", async (req, res) => {
+//   const { userId, items } = req.body;
+
+//   let cart = await Cart.findOne({ userId },{items},{ upsert: true, new: true });
+
+//   if (cart) {
+//     cart.items = items;
+//   } else {
+//     cart = new Cart({ userId, items });
+//   }
+
+//   await cart.save();
+//   res.json(cart);
+// });
+
 router.post("/", async (req, res) => {
   const { userId, items } = req.body;
 
-  let cart = await Cart.findOne({ userId },{items},{ upsert: true, new: true });
+  try {
+    const cart = await Cart.findOneAndUpdate(
+      { userId },
+      { items }, // 🔥 overwrite always
+      { new: true, upsert: true }
+    );
 
-  if (cart) {
-    cart.items = items;
-  } else {
-    cart = new Cart({ userId, items });
+    res.json(cart);
+  } catch (err) {
+    res.status(500).json({ error: "Cart update failed" });
   }
-
-  await cart.save();
-  res.json(cart);
 });
+
+
 
 module.exports = router;
