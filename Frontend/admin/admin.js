@@ -10,6 +10,8 @@ if (!localStorage.getItem("products")) {
 }
 
 const BASE_URL = "http://localhost:5000";
+const totalProducts = document.getElementById("totalProducts");
+const feedbackList = document.getElementById("feedbackList");
 // const localProducts = JSON.parse(localStorage.getItem("products")) || [];
 
 // Page Change
@@ -26,31 +28,36 @@ const adminMenu = document.getElementById("adminMenu");
 adminBtn.onclick = () => adminMenu.classList.toggle("hidden");
 
 // Light/Dark
-themeToggle.onclick = () => {
-  document.documentElement.classList.toggle("dark");
-};
+const toggle = document.getElementById("themeToggle");
+  const circle = document.getElementById("toggleCircle");
+
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    document.documentElement.classList.add("dark");
+    toggle.checked = true;
+    circle.textContent = "🌙";
+  } else {
+    document.documentElement.classList.remove("dark");
+    toggle.checked = false;
+    circle.textContent = "☀️";
+  }
+
+  // Toggle event
+  toggle.addEventListener("change", () => {
+    if (toggle.checked) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      circle.textContent = "🌙";
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      circle.textContent = "☀️";
+    }
+  });
+
 
 // Dashboard Loading
-// async function loadDashboard() {
-//   try {
-//     const users = await fetch(`${BASE_URL}/api/auth/users`).then(r => r.json());
-//     const orders = await fetch(`${BASE_URL}/api/order`).then(r => r.json());
-//     const feedback = await fetch(`${BASE_URL}/api/feedback`).then(r => r.json());
-
-//     totalUsers.textContent = users.length;
-//     totalOrders.textContent = orders.length;
-//     totalRevenue.textContent =
-//   "₹" + orders.reduce((a, b) => a + b.total, 0);
-//    totalFeedbacks.textContent = feedback.length;
-
-//     // 🔥 PRODUCTS COUNT (from shopping.js logic)
-//     totalProducts.textContent = getProductCount();
-
-//   } catch (e) {
-//     console.log("Dashboard error", e);
-//   }
-// }
-
 async function loadDashboard() {
   try {
     const users = await fetch(`${BASE_URL}/api/auth/users`).then(r => r.json());
@@ -62,65 +69,19 @@ async function loadDashboard() {
     totalRevenue.textContent = "₹" + orders.reduce((a, b) => a + b.total, 0);
 
     totalProducts.textContent = getProductCount();
-    totalFeedbacks.textContent = feedback.length; // 🔥 new
+    totalFeedbacks.textContent = feedback.length; 
 
   } catch (e) {
     console.log("Dashboard error", e);
   }
 }
 
-// USERS
-// async function loadUsers() {
-//   const users = await fetch(`${BASE_URL}/api/auth/users`).then(r => r.json());
-//   usersList.innerHTML = users.map(u =>
-//     `<p class="border p-2 rounded mb-2">${u.name} (${u.email})</p>`
-//   ).join("");
-// }
-
-
-// localStorage.setItem("products", JSON.stringify(products));
-
-// const localProducts = JSON.parse(localStorage.getItem("products")) || [];
 
 
 //Product Load
-// function loadProducts() {
-//   const products = JSON.parse(localStorage.getItem("products")) || [];
-
-//   const container = document.getElementById("productsList"); // 👈 yeh missing tha
-
-//   container.innerHTML = products.map((p, index) => `
-//     <tr class="border-b hover:bg-gray-50 dark:hover:bg-gray-700">
-
-//       <td class="p-3">${index + 1}</td>
-
-//       <td class="p-3">
-//         <img src="${p.image}" class="h-12 w-12 object-contain">
-//       </td>
-
-//       <td class="p-3 font-medium">${p.title}</td>
-
-//       <td class="p-3 text-[#073a7a] font-bold">₹${p.price}</td>
-
-//       <td class="p-3 flex gap-2">
-//         <button onclick="editProduct(${p.id})"
-//           class="bg-yellow-400 px-3 py-1 rounded text-sm">
-//           Edit
-//         </button>
-
-//         <button onclick="deleteProduct(${p.id})"
-//           class="bg-red-500 text-white px-3 py-1 rounded text-sm">
-//           Delete
-//         </button>
-//       </td>
-
-//     </tr>
-//   `).join("");
-// }
-
-
 function loadProducts() {
   const products = getProducts(); // 🔥 fix
+  // const container = document.getElementById("totalProducts");
   const container = document.getElementById("productsList");
 
   if (!container) return;
@@ -145,10 +106,7 @@ function loadProducts() {
     </tr>
   `).join("");
 }
-// function getProductCount() {
-//   const products = JSON.parse(localStorage.getItem("products")) || [];
-//   return products.length;
-// }
+
 // ORDERS
 async function loadUsers() {
   try {
@@ -195,8 +153,7 @@ async function loadUsers() {
 }
 
 function getProductCount() {
-  
-  return getProducts().length;; 
+    return getProducts(); 
 }
 
 //Orders Loading
@@ -243,33 +200,56 @@ async function loadOrders() {
     console.log("Orders load error", err);
   }
 }
-// FEEDBACK
-async function loadFeedback() {
-  const data = await fetch(`${BASE_URL}/api/feedback`).then(r => r.json());
-  feedbackList.innerHTML = data.map(f => `
-  <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+// Feedback
+// async function loadFeedback() {
+//   const data = await fetch(`${BASE_URL}/api/feedback`).then(r => r.json());
+//   feedbackList.innerHTML = data.map(f => `
+//   <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition duration-300">
     
-    <div class="flex justify-between items-center mb-2">
-      <div class="flex items-center gap-2">
-        <span class="bg-[#073a7a] text-white px-2 py-1 rounded-full text-xs">
-          ${f.name.charAt(0).toUpperCase()}
-        </span>
-        <p class="font-semibold text-gray-800 dark:text-gray-200">
-          ${f.name}
-        </p>
+//     <div class="flex justify-between items-center mb-2">
+//       <div class="flex items-center gap-2">
+//         <span class="bg-[#073a7a] text-white px-2 py-1 rounded-full text-xs">
+//           ${f.name.charAt(0).toUpperCase()}
+//         </span>
+//         <p class="font-semibold text-gray-800 dark:text-gray-200">
+//           ${f.name}
+//         </p>
+//       </div>
+
+//       <span class="text-xs text-gray-400">
+//         ${f.email}
+//       </span>
+//     </div>
+
+//     <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+//       ${f.message}
+//     </p>
+
+//   </div>
+// `).join("");
+// }
+async function loadFeedback() {
+  try {
+    const res = await fetch(`${BASE_URL}/api/feedback`);
+    const data = await res.json();
+
+    if (!data || data.length === 0) {
+      feedbackList.innerHTML = `<p class="text-gray-400">No feedback yet 😢</p>`;
+      return;
+    }
+
+    feedbackList.innerHTML = data.map(f => `
+      <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl shadow-sm">
+        <p class="font-semibold">${f.name}</p>
+        <p class="text-sm text-gray-400">${f.email}</p>
+        <p class="mt-2">${f.message}</p>
       </div>
+    `).join("");
 
-      <span class="text-xs text-gray-400">
-        ${f.email}
-      </span>
-    </div>
-
-    <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-      ${f.message}
-    </p>
-
-  </div>
-`).join("");
+  } catch (err) {
+    console.log("Feedback error:", err);
+    feedbackList.innerHTML = `<p class="text-red-500">Error loading feedback ❌</p>`;
+  }
 }
 //Delete Product
 function deleteProduct(id) {
@@ -316,7 +296,29 @@ function getProducts() {
   }
 
   return Array.isArray(data) ? data : [];
+  // return 61
 }
+
+// Coming Soon
+const comingSoonPages = ["revenue", "discount", "report"];
+
+  document.querySelectorAll(".menuBtn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const page = btn.getAttribute("data-page");
+
+      if (comingSoonPages.includes(page)) {
+        Swal.fire({
+          icon: "info",
+          title: "Coming Soon ⏳",
+          // text: "This feature is under development. Stay tuned!",
+          confirmButtonColor: "#6366f1"
+        });
+      } else {
+        
+        console.log("Load page:", page);
+      }
+    });
+  });
 
 //Edit Product
 function editProduct(id) {
