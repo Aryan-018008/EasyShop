@@ -80,8 +80,7 @@ EASYSHOP/
 │   │   └── admin.js
 │   ├── user/
 │   │   ├── shopping.html
-│   │   ├── shopping.js
-│   │   ├── feedback.html
+│   │   ├── shopping.js 
 │   │   ├── help.html
 │   │   ├── blog.html
 │   │   └── terms.html
