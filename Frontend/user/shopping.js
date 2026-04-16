@@ -8,7 +8,8 @@ const displayName = username.includes("@")
 document.getElementById("username").innerText = displayName;
 
 let cart = [];
-const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://easyshop-xznw.onrender.com";
 const cartBtn = document.getElementById("cartBtn");
 if (cartBtn) {
   cartBtn.addEventListener("click", toggleCart);
@@ -657,11 +658,7 @@ if (!localStorage.getItem("guestId")) {
   localStorage.setItem("guestId", existingGuest);
 }
 
-// window.addEventListener("DOMContentLoaded", async () => {
-//   displayProducts(products);
-//   await loadCart();
-//   await updateCartCount();
-// });
+
 
 window.addEventListener("DOMContentLoaded", async () => {
   if (!localStorage.getItem("guestId")) {
@@ -823,31 +820,6 @@ function updateTotal() {
 }
 
 //CheckOut
-// async function checkout() {
-//   if (!cart.length) {
-//     Swal.fire({
-//       icon: "warning",
-//       title: "Cart is empty 😢"
-//     });
-//     return;
-//   }
-
-//   const userId = getUserId();
-//   const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-
-//   await fetch(`${BASE_URL}/api/order`, {
-//     method: "POST",
-//     headers: {"Content-Type":"application/json"},
-//     body: JSON.stringify({ userId, items: cart, total })
-//   });
-
-//   Swal.fire("Order Placed 🎉");
-
-//   cart = [];
-//   await saveCart();
-//   updateCartCount();
-// }
-
 async function checkout() {
   if (!cart.length) {
     Swal.fire({

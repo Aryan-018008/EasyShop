@@ -9,7 +9,8 @@ if (!localStorage.getItem("products")) {
   ]));
 }
 
-const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://easyshop-xznw.onrender.com";
 const totalProducts = document.getElementById("totalProducts");
 const feedbackList = document.getElementById("feedbackList");
 // const localProducts = JSON.parse(localStorage.getItem("products")) || [];

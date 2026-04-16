@@ -192,7 +192,7 @@ async function signupUser() {
     return;
   }
 
-  const res = await fetch("http://localhost:5000/api/auth/signup", {
+  const res = await fetch("https://easyshop-xznw.onrender.com/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -214,21 +214,9 @@ async function signupUser() {
 }
 
 //Customer Count
-// async function loadCustomerCount() {
-//   try {
-//     // const res = await fetch("http://localhost:5000/api/auth/users/count");
-//     const res = await fetch("http://localhost:5000/api/auth/users");
-//     const data = await res.json();
-
-//     document.getElementById("customerCount").innerText = data.count;
-//   } catch (err) {
-//     console.log("Error fetching customers", err);
-//   }
-// }
-
 async function loadCustomerCount() {
   try {
-    const res = await fetch("http://localhost:5000/api/auth/users");
+    const res = await fetch("https://easyshop-xznw.onrender.com/api/auth/users");
     const users = await res.json();
 
     document.getElementById("customerCount").innerText = users.length;
@@ -262,7 +250,7 @@ async function loginUser() {
     return;
   }
 
-  const res = await fetch("http://localhost:5000/api/auth/login", {
+  const res = await fetch("https://easyshop-xznw.onrender.com/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
