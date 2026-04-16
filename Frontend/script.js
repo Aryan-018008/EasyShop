@@ -1,3 +1,11 @@
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("hidden");
+});
+
+
 // Open Modal
 function openLoginModal() {
   document.getElementById("loginModal").classList.remove("hidden");

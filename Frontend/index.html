@@ -28,24 +28,39 @@
 <header class="sticky top-0 z-50 bg-[#073a7a] text-white shadow-md">
   <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
 
-    <!-- <h1 class="text-2xl font-bold">EasyShop</h1> -->
-     <h1 class="text-2xl font-bold flex items-center gap-2">
-     <i class="fa-solid fa-bag-shopping"></i>
-     EasyShop
+    <!-- Logo -->
+    <h1 class="text-2xl font-bold flex items-center gap-2">
+      <i class="fa-solid fa-bag-shopping"></i>
+      EasyShop
     </h1>
 
-    <nav class="hidden md:flex gap-8 text-lg font-semibold">
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex gap-6 text-lg font-semibold items-center">
       <a href="#home" class="hover:text-gray-300">Home</a>
-      <!-- <a href="user/shopping.html" class="hover:text-gray-300">Shop</a> -->
       <a href="#about" class="hover:text-gray-300">About</a>
       <a href="#contact" class="hover:text-gray-300">Contact</a>
-      <!-- <a href=" class="hover:text-gray-300">Admin</a> -->
       <button onclick="openAdminModal()">Admin</button>
       <button onclick="openLoginModal()">Login</button>
       <button onclick="openSignupModal()">SignUP</button>
-      <!-- <a href="" class="hover:text-gray-300">UserLogin</a> -->
     </nav>
 
+    <!-- Hamburger-->
+    <button id="menuBtn" class="md:hidden text-2xl">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+    class="hidden flex-col bg-[#073a7a] text-white px-6 pb-4 space-y-3 md:hidden">
+
+    <a href="#home" class="block">Home</a>
+    <a href="#about" class="block">About</a>
+    <a href="#contact" class="block">Contact</a>
+    <button onclick="openAdminModal()" class="block text-left">Admin</button>
+    <button onclick="openLoginModal()" class="block text-left">Login</button>
+    <button onclick="openSignupModal()" class="block text-left">SignUP</button>
 
   </div>
 </header>
@@ -114,41 +129,6 @@
     <button onclick="closeLoginModal()" class="absolute top-3 right-4 text-gray-500 text-xl">&times;</button>
 
     <h2 class="text-2xl font-bold text-center text-[#073a7a] mb-6">User Login @EasyShop</h2>
-
-    <!-- <form id="loginForm" class="space-y-4">
-
-      
-      <div>
-        <label class="block text-sm font-semibold">Email</label>
-        <input type="email" id="email"
-          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
-
-      
-      <div>
-        <label class="block text-sm font-semibold">Password</label>
-        <input type="password" id="password"
-          class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-      </div>
-
-      
-      <div class="flex flex-col gap-3 mt-4">
-
-        
-        <button type="submit"
-          class="bg-[#073a7a] text-white py-2 rounded font-semibold hover:bg-blue-800 transition">
-          Login
-        </button>
-
-        
-        <button type="button" onclick="continueAsGuest()"
-          class="border border-[#073a7a] text-[#073a7a] py-2 rounded font-semibold hover:bg-gray-100 transition">
-          Continue as Guest
-        </button>
-
-      </div>
-
-    </form> -->
 
     <form id="loginForm" class="space-y-4">
 
@@ -323,7 +303,7 @@
       </button>
 
     </form> -->
-
+<!-- Temp Part -->
     <div class="text-center space-y-4">
 
   <p class="text-red-500 font-semibold text-sm">
