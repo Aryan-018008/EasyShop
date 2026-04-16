@@ -6,7 +6,7 @@ EasyShop is a full-stack e-commerce web application built using modern web techn
 
 ---
 ##  🚀 Live Demo
-EasyShop is live at 
+EasyShop is live at - https://easy-shop-tawny.vercel.app/
 ---
 
 ## 🌟 Features
